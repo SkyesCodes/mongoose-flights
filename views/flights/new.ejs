@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+
+<h2>Book a new flight</h2>
+<form action="/flights" method="POST">
+  <label>Airline:
+    <select name="airline"></select>
+  </label><br>
+  <label>Airport:
+    <select name="airport"></select>
+  </label><br>
+  <label>Departure 
+    <input type = "datetime-local" + year, name = "departure"/>
+  </label><br>
+  <label> Flight Number
+    <input type = "number" name="flightNo"/>
+  </label><br>
+  <br>
+  <button type="submit">Book Now!</button>
+</form>
+<p><%= errorMsg %></p>
+
+<%- include('../partials/footer') %>
