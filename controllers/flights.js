@@ -1,5 +1,7 @@
 const Flight = require('../models/flight');
 
+const Ticket = require('../models/tickets')
+
 module.exports = {
     index,
     new: addFlight,
@@ -16,16 +18,20 @@ module.exports = {
     res.render('flights/new', { errorMsg: '' });
   }
   async function create(req, res) {
+    console.log(req.body)
     // convert nowShowing's checkbox of nothing or "on" to boolean
-    req.body.nowShowing = !!req.body.nowShowing;
+    req.body.Flight = !!req.body.Flight;
     // remove any whitespace at start and end of cast
-    req.body.cast = req.body.cast.trim();
+    req.body.airline = req.body.airline.trim();
     // split cast into an array if it's not an empty string - using a regular expression as a separator
-    if (req.body.cast) req.body.cast = req.body.cast.split(/\s*,\s*/);
+    if (req.body.airline) req.body.airline = req.body.airline.split(/\s*,\s*/);
     // Remove empty properties so that defaults will be applied
     for (let key in req.body) {
       if (req.body[key] === '') delete req.body[key];
     }
+    console.log(req.body);
+    req.body.airline =req.body.airline [0]
+    req.body.flightNo = Number(req.body.flightNo) 
     try {
       await Flight.create(req.body);
       // Always redirect after CUDing data
@@ -37,3 +43,6 @@ module.exports = {
       res.render('flights/new', { errorMsg: err.message });
     }
   }
+  async function show(req,res){
+     Flight.findById(req.params.id, function(err, flight) {
+    Ticket.find({flight: flight._id}, function(err, tickets) }}

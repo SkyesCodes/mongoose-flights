@@ -12,11 +12,14 @@ const flightSchema = new mongoose.Schema({
   flightNo: {
     type: Number,
     required: true,
-    enum: [10,9999]
+    range: {min:10, max:9999}
   },
   departs: {
     type: Date
-  }
+  },
+  destination: {
+    type: trackingSchema
+  },
 });
  
 // Compile the schema into a model and export it

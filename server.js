@@ -9,7 +9,8 @@ require('./config/database');
 
 var indexRouter = require('./routes/index');
 var flightsRouter = require('./routes/flights');
-
+const trackingRouter= require('./routes/tracking');
+const detailsRouter = require('./routes/detials')
 var app = express();
 
 // view engine setup

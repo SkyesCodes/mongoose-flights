@@ -1,0 +1,9 @@
+<%include('./partials/header') %>
+<%require('./config/database'); %>
+<%include('./models/tracking')%>
+<%include('./views/flights/new')%>
+<h2>Flight Tracking</h2>
+<%tickets.forEach(function(t)){ %>
+<%= t.seat %>
+<%= t.price %>
+<%- include('./partials/footer') %>
